@@ -17,4 +17,4 @@ samples, guidance on mobile development, and a full API reference.
 
 ## Development
 
-All development push should in development branch!!!
+Push development code in development branch!!!
