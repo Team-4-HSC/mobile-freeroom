@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>834906989208-m7l1l0gs2600orp70nbv96kvaoctsbl1.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.834906989208-m7l1l0gs2600orp70nbv96kvaoctsbl1</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAbtVD1f-EUrkNhjtodZclAs4krOnMME3U</string>
+	<key>GCM_SENDER_ID</key>
+	<string>834906989208</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>app.freeroom.freeroom</string>
+	<key>PROJECT_ID</key>
+	<string>freeroom-fa4a6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>freeroom-fa4a6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:834906989208:ios:e31e09bea42f0e7b5ca6ed</string>
+</dict>
+</plist>

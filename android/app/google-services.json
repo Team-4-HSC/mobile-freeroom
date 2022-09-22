@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "834906989208",
+    "project_id": "freeroom-fa4a6",
+    "storage_bucket": "freeroom-fa4a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834906989208:android:2f092e71d1e1647a5ca6ed",
+        "android_client_info": {
+          "package_name": "app.freeroom.freeroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834906989208-el24ktkc52fo06vfeg6flnbnh0fcprfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-AKGBGyiD3uTSEWy8ppKx_Fec5xCrmSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834906989208-el24ktkc52fo06vfeg6flnbnh0fcprfd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
