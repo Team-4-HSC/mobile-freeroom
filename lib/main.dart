@@ -6,6 +6,7 @@ import 'app/routes/app_pages.dart';
 
 void main() {
   runApp(
+    // Import Material dari Flutter
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",
