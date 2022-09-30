@@ -15,6 +15,8 @@ class LoginController extends GetxController {
     super.onReady();
   }
 
+  void login(String email, String password) {}
+
   @override
   void onClose() {}
   void increment() => count.value++;

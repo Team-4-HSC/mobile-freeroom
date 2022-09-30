@@ -8,6 +8,8 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     LoginController loginController = Get.put(LoginController());
+    TextEditingController _npmController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
     return GestureDetector(
       onTap: () {
         FocusScopeNode focus = FocusScope.of(context);
@@ -64,8 +66,9 @@ class LoginView extends GetView<LoginController> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 10),
-                          child: TextField(
-                            autofocus: false,
+                          child: TextFormField(
+                            controller: _npmController,
+                            autofocus: true,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
@@ -105,8 +108,9 @@ class LoginView extends GetView<LoginController> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 15),
-                          child: TextField(
-                            autofocus: false,
+                          child: TextFormField(
+                            controller: _passwordController,
+                            autofocus: true,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
@@ -180,7 +184,9 @@ class LoginView extends GetView<LoginController> {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          print(_npmController.text.trim());
+                        },
                         child: Text('Masuk'),
                       ),
                     ),
