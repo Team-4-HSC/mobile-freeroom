@@ -7,9 +7,7 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
-    LoginController loginController = Get.put(LoginController());
-    TextEditingController _npmController = TextEditingController();
-    TextEditingController _passwordController = TextEditingController();
+    Get.put(LoginController());
     return GestureDetector(
       onTap: () {
         FocusScopeNode focus = FocusScope.of(context);
@@ -67,7 +65,7 @@ class LoginView extends GetView<LoginController> {
                         Padding(
                           padding: EdgeInsets.only(top: 10),
                           child: TextFormField(
-                            controller: _npmController,
+                            controller: controller.npm,
                             autofocus: true,
                             style: TextStyle(
                               fontFamily: 'Poppins',
@@ -109,7 +107,7 @@ class LoginView extends GetView<LoginController> {
                         Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 15),
                           child: TextFormField(
-                            controller: _passwordController,
+                            controller: controller.password,
                             autofocus: true,
                             style: TextStyle(
                               fontFamily: 'Poppins',
@@ -141,7 +139,7 @@ class LoginView extends GetView<LoginController> {
                             contentPadding: EdgeInsets.all(0),
                             horizontalTitleGap: 0,
                             child: CheckboxListTile(
-                              value: loginController.rememberMe.value,
+                              value: controller.rememberMe.value,
                               activeColor: Color(0xFF2EC4B6),
                               checkColor: Colors.white,
                               title: Text(
@@ -153,7 +151,7 @@ class LoginView extends GetView<LoginController> {
                                 ),
                               ),
                               onChanged: (value) {
-                                loginController.rememberMe.value = value!;
+                                controller.rememberMe.value = value!;
                               },
                               controlAffinity: ListTileControlAffinity.leading,
                             ),
@@ -185,9 +183,15 @@ class LoginView extends GetView<LoginController> {
                           ),
                         ),
                         onPressed: () {
-                          print(_npmController.text.trim());
+                          controller.isLoading.value
+                              ? null
+                              : controller.login();
                         },
-                        child: Text('Masuk'),
+                        child: Obx(() {
+                          return controller.isLoading.isTrue
+                              ? Center(child: CircularProgressIndicator())
+                              : Text('Masuk');
+                        }),
                       ),
                     ),
                   )
