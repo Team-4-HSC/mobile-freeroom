@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,9 +14,13 @@ class DashboardView extends GetView<DashboardController> {
         centerTitle: true,
       ),
       body: Center(
-        child: Text(
-          'DashboardView is working',
-          style: TextStyle(fontSize: 20),
+        child: Container(
+          child: RaisedButton(
+            child: Text('Logout'),
+            onPressed: () {
+              FirebaseAuth.instance.signOut();
+            },
+          ),
         ),
       ),
     );
