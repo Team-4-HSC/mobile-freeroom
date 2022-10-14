@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:freeroom/app/modules/login/controllers/login_controller.dart';
@@ -13,7 +12,6 @@ void main() async {
     Get.put(LoginController());
   });
   runApp(
-    // Import Material dari Flutter
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Application",
