@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freeroom/app/views/views/rku_view.dart';
 
 import 'package:get/get.dart';
 
@@ -83,21 +84,104 @@ class HomeView extends GetView<HomeController> {
                   Radius.circular(20),
                 ),
               ),
+              child: RoomCard(
+                roomImage: 'assets/images/ft-logo.png',
+                roomName: 'Fakultas Teknik',
+                cardColor: 0xFFFF9F1C,
+                title: 'Fakultas',
+              ),
             ),
             SizedBox(
               height: 40,
             ),
-            Container(
-              height: Get.height / 5,
-              decoration: BoxDecoration(
-                color: Color(0xFF2EC4B6),
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-              ),
+            RoomCard(
+              roomImage: 'assets/images/rku-logo.png',
+              roomName: 'RKU',
+              cardColor: 0xFF2EC4B6,
+              title: 'RKU',
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class RoomCard extends StatelessWidget {
+  final roomName;
+  final roomImage;
+  final cardColor;
+  final title;
+
+  const RoomCard({
+    Key? key,
+    required this.roomName,
+    required this.roomImage,
+    required this.cardColor,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: Get.height / 5,
+      decoration: BoxDecoration(
+        color: Color(cardColor),
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+      child: Row(
+        children: [
+          Image.asset(
+            roomImage,
+            fit: BoxFit.cover,
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 15,
+                top: 15,
+                bottom: 15,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    roomName,
+                    style: TextStyle(
+                      fontFamily: 'Poppins',
+                      fontWeight: FontWeight.w700,
+                      fontSize: 25,
+                      color: Colors.white,
+                    ),
+                  ),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12), // <-- Radius
+                      ),
+                      primary: Colors.white,
+                      onPrimary: Color(0xFF505050),
+                      textStyle: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    onPressed: () {
+                      Get.to(RkuView(
+                        title: title,
+                      ));
+                    },
+                    child: Text('Check'),
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
       ),
     );
   }

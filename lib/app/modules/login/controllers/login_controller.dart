@@ -39,7 +39,7 @@ class LoginController extends GetxController {
   _setInitialScreen(User? user) {
     if (user == null) {
       // if the user is not found then the user is navigated to the Register Screen
-      Get.offAll(() => DashboardView());
+      Get.offAll(() => LoginView());
     } else {
       // if the user exists and logged in the the user is navigated to the Home Screen
       Get.offAll(() => DashboardView());
