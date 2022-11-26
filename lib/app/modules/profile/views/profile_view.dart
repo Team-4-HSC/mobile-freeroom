@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:freeroom/app/modules/login/controllers/login_controller.dart';
 
 import 'package:get/get.dart';
 
+import '../../home/controllers/home_controller.dart';
 import '../controllers/profile_controller.dart';
 
 class ProfileView extends GetView<ProfileController> {
+  ProfileController profileController = Get.put(ProfileController());
+  HomeController homeController = Get.put(HomeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,33 +41,37 @@ class ProfileView extends GetView<ProfileController> {
             SizedBox(
               height: 100,
             ),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                text: 'Muhammad Hafiz\n',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  color: Color(0xFF7C7C7C),
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '1904111010062\n\n',
+            Obx(
+              () {
+                return RichText(
+                  textAlign: TextAlign.center,
+                  text: TextSpan(
+                    text: homeController.nameUser.value + '\n',
                     style: TextStyle(
+                      fontFamily: 'Poppins',
                       color: Color(0xFF7C7C7C),
-                      fontSize: 15,
-                      fontWeight: FontWeight.w500,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: homeController.typeOfUser.value + '\n\n',
+                        style: TextStyle(
+                          color: Color(0xFF7C7C7C),
+                          fontSize: 15,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                      TextSpan(
+                        text: homeController.facultyUser.value,
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
+                    ],
                   ),
-                  TextSpan(
-                    text: 'Teknik Komputer',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ],
-              ),
+                );
+              },
             ),
             SizedBox(
               height: 20,
@@ -81,7 +89,9 @@ class ProfileView extends GetView<ProfileController> {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                profileController.logout();
+              },
               child: Text('Logout'),
             ),
           ],

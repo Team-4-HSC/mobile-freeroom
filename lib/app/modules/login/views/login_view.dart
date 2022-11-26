@@ -9,12 +9,7 @@ class LoginView extends GetView<LoginController> {
   Widget build(BuildContext context) {
     Get.put(LoginController());
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode focus = FocusScope.of(context);
-        if (!focus.hasPrimaryFocus && focus.focusedChild != null) {
-          focus.focusedChild?.unfocus();
-        }
-      },
+      onTap: () {},
       child: Scaffold(
         backgroundColor: Color(0xFFCBF3F0),
         resizeToAvoidBottomInset: false,
@@ -66,7 +61,6 @@ class LoginView extends GetView<LoginController> {
                           padding: EdgeInsets.only(top: 10),
                           child: TextFormField(
                             controller: controller.npm,
-                            autofocus: true,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
@@ -107,8 +101,8 @@ class LoginView extends GetView<LoginController> {
                         Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 15),
                           child: TextFormField(
+                            obscureText: true,
                             controller: controller.password,
-                            autofocus: true,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "834906989208",
+    "firebase_url": "https://freeroom-fa4a6-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "freeroom-fa4a6",
     "storage_bucket": "freeroom-fa4a6.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "834906989208-el24ktkc52fo06vfeg6flnbnh0fcprfd.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "834906989208-m7l1l0gs2600orp70nbv96kvaoctsbl1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "app.freeroom.freeroom"
+              }
             }
           ]
         }

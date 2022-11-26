@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:freeroom/app/modules/login/controllers/login_controller.dart';
 import 'package:freeroom/app/views/views/rku_view.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  HomeController homeController = Get.put(HomeController());
+  String dateNow = DateFormat("EEEEE, dd, MM, yyyy").format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,22 +21,26 @@ class HomeView extends GetView<HomeController> {
             SizedBox(
               height: 40,
             ),
-            Text(
-              'Muhammad Hafiz',
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 24,
-                fontWeight: FontWeight.w700,
-                color: Color(0xFFFF9F1C),
+            Obx(
+              () => Text(
+                homeController.nameUser.value,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFFFF9F1C),
+                ),
               ),
             ),
-            Text(
-              "Mahasiswa",
-              style: TextStyle(
-                fontFamily: 'Poppins',
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF2EC4B6),
+            Obx(
+              () => Text(
+                homeController.typeOfUser.value,
+                style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Color(0xFF2EC4B6),
+                ),
               ),
             ),
             SizedBox(
@@ -49,7 +57,7 @@ class HomeView extends GetView<HomeController> {
                 ),
               ),
               child: Text(
-                'Jumat, 9/9/2022',
+                dateNow,
                 style: TextStyle(
                   fontFamily: 'Montserrat',
                   fontSize: 16,
@@ -84,11 +92,13 @@ class HomeView extends GetView<HomeController> {
                   Radius.circular(20),
                 ),
               ),
-              child: RoomCard(
-                roomImage: 'assets/images/ft-logo.png',
-                roomName: 'Fakultas Teknik',
-                cardColor: 0xFFFF9F1C,
-                title: 'Fakultas',
+              child: Obx(
+                () => RoomCard(
+                  roomImage: 'assets/images/ft-logo.png',
+                  roomName: homeController.facultyUser.value,
+                  cardColor: 0xFFFF9F1C,
+                  title: homeController.facultyUser.value,
+                ),
               ),
             ),
             SizedBox(

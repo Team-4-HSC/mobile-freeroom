@@ -1,15 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:freeroom/app/data/userModel.dart';
 import 'package:freeroom/app/modules/dashboard/views/dashboard_view.dart';
+import 'package:freeroom/app/modules/home/controllers/home_controller.dart';
 import 'package:freeroom/app/modules/login/views/login_view.dart';
-import 'package:freeroom/app/modules/splash_screen/views/splash_screen_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
   //TODO: Implement LoginController
+
+  final storage = new FlutterSecureStorage();
 
   static LoginController instance = Get.find();
   late Rx<User?> firebaseUser;
@@ -20,6 +22,8 @@ class LoginController extends GetxController {
   late TextEditingController npm = TextEditingController();
   late TextEditingController password = TextEditingController();
 
+  HomeController homeController = Get.put(HomeController());
+
   final count = 0.obs;
   @override
   void onInit() {
@@ -27,23 +31,8 @@ class LoginController extends GetxController {
   }
 
   @override
-  void onReady() {
+  void onReady() async {
     super.onReady();
-
-    firebaseUser = Rx<User?>(auth.currentUser);
-
-    firebaseUser.bindStream(auth.userChanges());
-    ever(firebaseUser, _setInitialScreen);
-  }
-
-  _setInitialScreen(User? user) {
-    if (user == null) {
-      // if the user is not found then the user is navigated to the Register Screen
-      Get.offAll(() => LoginView());
-    } else {
-      // if the user exists and logged in the the user is navigated to the Home Screen
-      Get.offAll(() => DashboardView());
-    }
   }
 
   Future<void> login() async {
@@ -74,10 +63,19 @@ class LoginController extends GetxController {
           );
         } else {
           try {
+            UserData user = userDataFromJson(response.body);
+            await storage.write(key: 'name', value: user.name);
+            await storage.write(key: 'typeOfUser', value: user.typeOfUser);
+            await storage.write(key: 'faculty', value: user.faculty);
+            await storage.write(key: 'major', value: user.major);
             await auth.signInWithEmailAndPassword(
               email: '${npm.text.trim()}@gmail.com',
               password: password.text,
             );
+            homeController.nameUser.value = user.name;
+            homeController.typeOfUser.value = user.typeOfUser;
+            homeController.facultyUser.value = user.faculty;
+            homeController.majorUser.value = user.major;
           } on FirebaseAuthException catch (e) {
             if (e.message ==
                 'There is no user record corresponding to this identifier. The user may have been deleted.') {

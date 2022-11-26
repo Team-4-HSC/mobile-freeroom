@@ -10,7 +10,6 @@ import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
   DashboardController dashboardController = Get.put(DashboardController());
-
   final screen = [
     HomeView(),
     SearchView(),
