@@ -4,20 +4,28 @@ import 'dart:ffi';
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:freeroom/app/data/sensorData.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
-
   final storage = new FlutterSecureStorage();
 
   RxString nameUser = 'Loading'.obs;
   RxString typeOfUser = 'Loading'.obs;
   RxString majorUser = 'Loading'.obs;
   RxString facultyUser = 'Loading'.obs;
+
+  RxBool classIsWaiting = false.obs;
   RxBool classFull = false.obs;
+
+  DatabaseReference sensorData = FirebaseDatabase(
+          databaseURL:
+              "https://freeroom-fa4a6-default-rtdb.asia-southeast1.firebasedatabase.app")
+      .ref()
+      .child('Fakultas Teknik')
+      .child('RKTE-1');
 
   final time = '00.00'.obs;
 
@@ -42,16 +50,25 @@ class HomeController extends GetxController {
 
   setSensorData(data) async {
     classFull.value = data.state;
+    classIsWaiting.value = data.isWaiting;
+  }
+
+  setIsWaitingAfterWait(value) async {
+    sensorData.update({
+      'isWaiting': value,
+    });
   }
 
   var timer;
 
-  startTime(int seconds) {
+  startTime(int seconds, context) {
     const duration = Duration(seconds: 1);
     var remainingTime = seconds;
     timer = Timer.periodic(duration, (Timer timer) {
-      if (remainingTime == 0) {
+      if (remainingTime < 0) {
         timer.cancel();
+        setIsWaitingAfterWait(false);
+        Get.back();
       } else {
         int minutes = remainingTime ~/ 60;
         int seconds = (remainingTime % 60);

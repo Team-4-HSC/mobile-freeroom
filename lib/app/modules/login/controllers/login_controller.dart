@@ -2,9 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:freeroom/app/data/userModel.dart';
-import 'package:freeroom/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:freeroom/app/modules/home/controllers/home_controller.dart';
-import 'package:freeroom/app/modules/login/views/login_view.dart';
 import 'package:http/http.dart' as http;
 import 'package:get/get.dart';
 

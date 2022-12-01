@@ -162,182 +162,234 @@ class RkuView extends GetView {
                     children: [
                       GestureDetector(
                         onTap: () async {
-                          showDialog(
-                            context: context,
-                            barrierDismissible: false,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(32.0))),
-                                backgroundColor: Color(0xFFFFBF69),
-                                contentPadding: EdgeInsets.only(
-                                  top: 40,
-                                  left: 27,
-                                  right: 27,
+                          if (homeController.classIsWaiting.value) {
+                            Get.snackbar(
+                              'Error',
+                              'Kelas telah dibooking',
+                              backgroundColor: Colors.redAccent,
+                              snackPosition: SnackPosition.TOP,
+                              titleText: Text(
+                                'Error',
+                                style: TextStyle(
+                                  color: Colors.white,
                                 ),
-                                content: RichText(
-                                  textAlign: TextAlign.center,
-                                  text: TextSpan(
-                                    text:
-                                        'Apakah anda yakin ingin menggunakan ruang kelas ',
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.w900,
-                                      color: Colors.black,
+                              ),
+                              messageText: Text(
+                                'Kelas telah dibooking',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          } else if (homeController.classFull.value) {
+                            Get.snackbar(
+                              'Error',
+                              'Kelas sudah terisi',
+                              backgroundColor: Colors.redAccent,
+                              snackPosition: SnackPosition.TOP,
+                              titleText: Text(
+                                'Error',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              messageText: Text(
+                                'Kelas sudah terisi',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                              ),
+                            );
+                          } else {
+                            showDialog(
+                              context: context,
+                              barrierDismissible: false,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(32.0))),
+                                  backgroundColor: Color(0xFFFFBF69),
+                                  contentPadding: EdgeInsets.only(
+                                    top: 40,
+                                    left: 27,
+                                    right: 27,
+                                  ),
+                                  content: RichText(
+                                    textAlign: TextAlign.center,
+                                    text: TextSpan(
+                                      text:
+                                          'Apakah anda yakin ingin menggunakan ruang kelas ',
+                                      style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.w900,
+                                        color: Colors.black,
+                                      ),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: 'RKTE-1',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        TextSpan(
+                                          text: ' ini sekarang ?',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                      ],
                                     ),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'RKTE-1',
+                                  ),
+                                  actionsAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  actionsPadding: EdgeInsets.only(
+                                    top: 10,
+                                    bottom: 27,
+                                    left: 27,
+                                    right: 27,
+                                  ),
+                                  actions: [
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        primary: Colors.red,
+                                      ),
+                                      child: Text(
+                                        "Batal",
                                         style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
                                           color: Colors.white,
                                         ),
                                       ),
-                                      TextSpan(
-                                        text: ' ini sekarang ?',
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    ),
+                                    ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(12),
+                                        ),
+                                        primary: Color(0xFF00E432),
+                                      ),
+                                      child: Text(
+                                        "Ya",
                                         style: TextStyle(
-                                          color: Colors.black,
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 20,
+                                          color: Colors.white,
                                         ),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                                actionsAlignment: MainAxisAlignment.spaceEvenly,
-                                actionsPadding: EdgeInsets.only(
-                                  top: 10,
-                                  bottom: 27,
-                                  left: 27,
-                                  right: 27,
-                                ),
-                                actions: [
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      primary: Colors.red,
-                                    ),
-                                    child: Text(
-                                      "Batal",
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                  ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(12),
-                                      ),
-                                      primary: Color(0xFF00E432),
-                                    ),
-                                    child: Text(
-                                      "Ya",
-                                      style: TextStyle(
-                                        fontFamily: 'Poppins',
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20,
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                      if (homeController.timer != null) {
-                                        Get.snackbar(
-                                          'Error',
-                                          'Kamu telah melakukan booking kelas ini',
-                                          backgroundColor: Colors.redAccent,
-                                          snackPosition: SnackPosition.TOP,
-                                          titleText: Text(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                        homeController
+                                            .setIsWaitingAfterWait(true);
+                                        if (homeController.timer != null &&
+                                            homeController.timer.isActive) {
+                                          Get.snackbar(
                                             'Error',
-                                            style: TextStyle(
-                                              color: Colors.white,
+                                            'Kamu telah melakukan booking kelas ini',
+                                            backgroundColor: Colors.redAccent,
+                                            snackPosition: SnackPosition.TOP,
+                                            titleText: Text(
+                                              'Error',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
                                             ),
-                                          ),
-                                          messageText: Text(
-                                            'Kamu telah melakukan booking kelas, tunggu hingga jeda waktu selesai jika ingin membooking kelas lain',
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                            ),
-                                          ),
-                                        );
-                                      } else {
-                                        homeController.startTime(899);
-                                      }
-                                      showDialog(
-                                        barrierDismissible: false,
-                                        context: context,
-                                        builder: (context) {
-                                          return AlertDialog(
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(32.0))),
-                                            backgroundColor: Color(0xFFFFBF69),
-                                            content: Obx(
-                                              () {
-                                                return RichText(
-                                                  textAlign: TextAlign.center,
-                                                  text: TextSpan(
-                                                    text: 'Berhasil! Kelas ',
-                                                    style: TextStyle(
-                                                      fontFamily: 'Poppins',
-                                                      fontSize: 25,
-                                                      fontWeight:
-                                                          FontWeight.w900,
-                                                      color: Colors.black,
-                                                    ),
-                                                    children: <TextSpan>[
-                                                      TextSpan(
-                                                        text: 'RKTE-1',
-                                                        style: TextStyle(
-                                                          color: Colors.white,
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            ' dalam status menunggu\n\n',
-                                                        style: TextStyle(
-                                                          color: Colors.black,
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            'Segara masuk kelas sebelum waktu 15 Menit!\n\n',
-                                                        style: TextStyle(
-                                                          color: Colors.black
-                                                              .withOpacity(0.6),
-                                                          fontSize: 15,
-                                                        ),
-                                                      ),
-                                                      TextSpan(
-                                                        text:
-                                                            '${homeController.time.value} Menit',
-                                                        style: TextStyle(
-                                                          color: Colors.red,
-                                                          fontSize: 25,
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              },
+                                            messageText: Text(
+                                              'Kamu telah melakukan booking kelas, tunggu hingga jeda waktu selesai jika ingin membooking kelas lain',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
                                             ),
                                           );
-                                        },
-                                      );
-                                    },
-                                  ),
-                                ],
-                              );
-                            },
-                          );
+                                        } else {
+                                          homeController.time.value = '15:00';
+                                          homeController.startTime(
+                                              899, context);
+                                        }
+                                        showDialog(
+                                          barrierDismissible: false,
+                                          context: context,
+                                          builder: (context) {
+                                            return AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(
+                                                              32.0))),
+                                              backgroundColor:
+                                                  Color(0xFFFFBF69),
+                                              content: Obx(
+                                                () {
+                                                  return RichText(
+                                                    textAlign: TextAlign.center,
+                                                    text: TextSpan(
+                                                      text: 'Berhasil! Kelas ',
+                                                      style: TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        fontSize: 25,
+                                                        fontWeight:
+                                                            FontWeight.w900,
+                                                        color: Colors.black,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                          text: 'RKTE-1',
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              ' dalam status menunggu\n\n',
+                                                          style: TextStyle(
+                                                            color: Colors.black,
+                                                          ),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              'Segara masuk kelas sebelum waktu 15 Menit!\n\n',
+                                                          style: TextStyle(
+                                                            color: Colors.black
+                                                                .withOpacity(
+                                                                    0.6),
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                        TextSpan(
+                                                          text:
+                                                              '${homeController.time.value} Menit',
+                                                          style: TextStyle(
+                                                            color: Colors.red,
+                                                            fontSize: 25,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
                         },
                         child: Obx(
                           () => Container(
@@ -347,7 +399,9 @@ class RkuView extends GetView {
                               border: Border.all(
                                 color: homeController.classFull.value
                                     ? Colors.red
-                                    : Colors.green,
+                                    : homeController.classIsWaiting.value
+                                        ? Colors.yellow
+                                        : Colors.green,
                                 width: 5,
                               ),
                               borderRadius: BorderRadius.all(
