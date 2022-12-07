@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '834906989208',
     projectId: 'freeroom-fa4a6',
     authDomain: 'freeroom-fa4a6.firebaseapp.com',
+    databaseURL: 'https://freeroom-fa4a6-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'freeroom-fa4a6.appspot.com',
   );
 
@@ -57,6 +58,7 @@ class DefaultFirebaseOptions {
     appId: '1:834906989208:android:2f092e71d1e1647a5ca6ed',
     messagingSenderId: '834906989208',
     projectId: 'freeroom-fa4a6',
+    databaseURL: 'https://freeroom-fa4a6-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'freeroom-fa4a6.appspot.com',
   );
 
@@ -65,6 +67,7 @@ class DefaultFirebaseOptions {
     appId: '1:834906989208:ios:e31e09bea42f0e7b5ca6ed',
     messagingSenderId: '834906989208',
     projectId: 'freeroom-fa4a6',
+    databaseURL: 'https://freeroom-fa4a6-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'freeroom-fa4a6.appspot.com',
     iosClientId: '834906989208-m7l1l0gs2600orp70nbv96kvaoctsbl1.apps.googleusercontent.com',
     iosBundleId: 'app.freeroom.freeroom',
@@ -75,6 +78,7 @@ class DefaultFirebaseOptions {
     appId: '1:834906989208:ios:e31e09bea42f0e7b5ca6ed',
     messagingSenderId: '834906989208',
     projectId: 'freeroom-fa4a6',
+    databaseURL: 'https://freeroom-fa4a6-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'freeroom-fa4a6.appspot.com',
     iosClientId: '834906989208-m7l1l0gs2600orp70nbv96kvaoctsbl1.apps.googleusercontent.com',
     iosBundleId: 'app.freeroom.freeroom',

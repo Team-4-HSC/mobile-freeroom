@@ -7,14 +7,9 @@ import '../controllers/login_controller.dart';
 class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
-    LoginController loginController = Get.put(LoginController());
+    Get.put(LoginController());
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode focus = FocusScope.of(context);
-        if (!focus.hasPrimaryFocus && focus.focusedChild != null) {
-          focus.focusedChild?.unfocus();
-        }
-      },
+      onTap: () {},
       child: Scaffold(
         backgroundColor: Color(0xFFCBF3F0),
         resizeToAvoidBottomInset: false,
@@ -64,8 +59,8 @@ class LoginView extends GetView<LoginController> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 10),
-                          child: TextField(
-                            autofocus: false,
+                          child: TextFormField(
+                            controller: controller.npm,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
@@ -105,8 +100,9 @@ class LoginView extends GetView<LoginController> {
                         ),
                         Padding(
                           padding: EdgeInsets.only(top: 10, bottom: 15),
-                          child: TextField(
-                            autofocus: false,
+                          child: TextFormField(
+                            obscureText: true,
+                            controller: controller.password,
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               fontWeight: FontWeight.w400,
@@ -137,7 +133,7 @@ class LoginView extends GetView<LoginController> {
                             contentPadding: EdgeInsets.all(0),
                             horizontalTitleGap: 0,
                             child: CheckboxListTile(
-                              value: loginController.rememberMe.value,
+                              value: controller.rememberMe.value,
                               activeColor: Color(0xFF2EC4B6),
                               checkColor: Colors.white,
                               title: Text(
@@ -149,7 +145,7 @@ class LoginView extends GetView<LoginController> {
                                 ),
                               ),
                               onChanged: (value) {
-                                loginController.rememberMe.value = value!;
+                                controller.rememberMe.value = value!;
                               },
                               controlAffinity: ListTileControlAffinity.leading,
                             ),
@@ -180,8 +176,16 @@ class LoginView extends GetView<LoginController> {
                             fontWeight: FontWeight.w700,
                           ),
                         ),
-                        onPressed: () {},
-                        child: Text('Masuk'),
+                        onPressed: () {
+                          controller.isLoading.value
+                              ? null
+                              : controller.login();
+                        },
+                        child: Obx(() {
+                          return controller.isLoading.isTrue
+                              ? Center(child: CircularProgressIndicator())
+                              : Text('Masuk');
+                        }),
                       ),
                     ),
                   )
